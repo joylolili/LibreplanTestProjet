@@ -1,0 +1,11 @@
+TEST :
+
+# EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase
+
+# EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteResources AND WITH TEST_CASE GetResourceTestCase
+
+# EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteResources AND WITH TEST_CASE GetResourcesTestCase
+
+# EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteCalendrier AND WITH TEST_CASE GetCalendarTestCase
+
+# EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteCalendrier AND WITH TEST_CASE GetAllCalendarsTestCase
