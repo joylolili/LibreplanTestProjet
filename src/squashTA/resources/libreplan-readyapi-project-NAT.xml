@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="59f94a92-2b40-4c21-b26a-66ff3519f49c" created="2.4.0" activeEnvironment="Default environment" name="libreplan" resourceRoot="${projectDir}" updated="2.4.0 2018-06-08T12:50:23Z" encryptionMode="Not encrypted" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="b2013a0c-c992-4772-ab9e-79e6b5a5e01b" wadlVersion="http://research.sun.com/wadl/2006/10" name="Service 1" type="rest" definitionUrl="file:/C:/Users/formation/Desktop/LibrePlanProjets%20.wadl" basePath="/libreplan/ws/rest/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/formation/Desktop/LibrePlanProjets%20.wadl"><con:part><con:url>file:/C:/Users/formation/Desktop/LibrePlanProjets%20.wadl</con:url><con:content><![CDATA[<application xmlns="http://research.sun.com/wadl/2006/10" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <grammars>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://rest.ws.libreplan.org" xmlns:tns="http://rest.ws.libreplan.org">
+      <xs:element name="criterion-requirement" type="tns:criterionRequirementDTO"/>
+      <xs:element name="direct-criterion-requirement" type="tns:directCriterionRequirementDTO"/>
+      <xs:element name="indirect-criterion-requirement" type="tns:indirectCriterionRequirementDTO"/>
+      <xs:element name="instance-constraint-violations-list" type="tns:instanceConstraintViolationsListDTO"/>
+      <xs:element name="internal-error" type="tns:internalErrorDTO"/>
+      <xs:element name="label" type="tns:labelReferenceDTO"/>
+      <xs:element name="order" type="tns:orderDTO"/>
+      <xs:element name="order-line" type="tns:orderLineDTO"/>
+      <xs:element name="order-line-group" type="tns:orderLineGroupDTO"/>
+      <xs:element name="order-list" type="tns:orderListDTO"/>
+      <xs:complexType name="instanceConstraintViolationsListDTO">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="instance-constraint-violations" type="tns:instanceConstraintViolationsDTO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="instanceConstraintViolationsDTO">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="constraint-violation" type="tns:constraintViolationDTO"/>
+          <xs:element minOccurs="0" name="recoverable-error" type="tns:recoverableErrorDTO"/>
+          <xs:element minOccurs="0" ref="tns:internal-error"/>
+        </xs:sequence>
+        <xs:attribute name="instance-id" type="xs:string"/>
+        <xs:attribute name="num-item" type="xs:long"/>
+        <xs:attribute name="code" type="xs:string"/>
+        <xs:attribute name="entity-type" type="xs:string"/>
+      </xs:complexType>
+      <xs:complexType name="constraintViolationDTO">
+        <xs:sequence/>
+        <xs:attribute name="field-name" type="xs:string"/>
+        <xs:attribute name="message" type="xs:string"/>
+      </xs:complexType>
+      <xs:complexType name="recoverableErrorDTO">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="property" type="tns:propertyDTO"/>
+        </xs:sequence>
+        <xs:attribute name="error-code" type="xs:int" use="required"/>
+        <xs:attribute name="message" type="xs:string"/>
+      </xs:complexType>
+      <xs:complexType name="propertyDTO">
+        <xs:sequence/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="value" type="xs:string"/>
+      </xs:complexType>
+      <xs:complexType name="internalErrorDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="stack-trace" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="message" type="xs:string"/>
+      </xs:complexType>
+      <xs:complexType name="orderListDTO">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:order"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="orderDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:orderLineGroupDTO">
+            <xs:sequence/>
+            <xs:attribute name="dependencies-constraints-have-priority" type="xs:boolean"/>
+            <xs:attribute name="calendar-name" type="xs:string"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="orderLineGroupDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:orderElementDTO">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="children">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                      <xs:element ref="tns:order-line"/>
+                      <xs:element ref="tns:order-line-group"/>
+                      <xs:element ref="tns:order"/>
+                    </xs:choice>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="orderElementDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:integrationEntityDTO">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="labels">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:label"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="material-assignments">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="material-assignment" type="tns:materialAssignmentDTO"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="advance-measurements">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="advance-measurement" type="tns:advanceMeasurementDTO"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="criterion-requirements">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                      <xs:element ref="tns:direct-criterion-requirement"/>
+                      <xs:element ref="tns:indirect-criterion-requirement"/>
+                    </xs:choice>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string"/>
+            <xs:attribute name="init-date" type="xs:anySimpleType"/>
+            <xs:attribute name="deadline" type="xs:anySimpleType"/>
+            <xs:attribute name="description" type="xs:string"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType abstract="true" name="integrationEntityDTO">
+        <xs:sequence/>
+        <xs:attribute name="code" type="xs:string"/>
+      </xs:complexType>
+      <xs:complexType name="orderLineDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:orderElementDTO">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="hours-groups">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="hours-group" type="tns:hoursGroupDTO"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="hoursGroupDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="criterion-requirements">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                  <xs:element ref="tns:direct-criterion-requirement"/>
+                  <xs:element ref="tns:indirect-criterion-requirement"/>
+                </xs:choice>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="code" type="xs:string"/>
+        <xs:attribute name="resource-type" type="tns:resourceEnumDTO"/>
+        <xs:attribute name="working-hours" type="xs:int"/>
+      </xs:complexType>
+      <xs:complexType name="directCriterionRequirementDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:criterionRequirementDTO">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="criterionRequirementDTO">
+        <xs:sequence/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="type" type="xs:string"/>
+      </xs:complexType>
+      <xs:complexType name="indirectCriterionRequirementDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:criterionRequirementDTO">
+            <xs:sequence/>
+            <xs:attribute name="valid" type="xs:boolean" use="required"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="labelReferenceDTO">
+        <xs:sequence/>
+        <xs:attribute name="code" type="xs:string"/>
+      </xs:complexType>
+      <xs:complexType name="materialAssignmentDTO">
+        <xs:sequence/>
+        <xs:attribute name="material-code" type="xs:string"/>
+        <xs:attribute name="units" type="xs:decimal"/>
+        <xs:attribute name="unit-price" type="xs:decimal"/>
+        <xs:attribute name="estimated-availability" type="xs:anySimpleType"/>
+      </xs:complexType>
+      <xs:complexType name="advanceMeasurementDTO">
+        <xs:sequence/>
+        <xs:attribute name="date" type="xs:anySimpleType"/>
+        <xs:attribute name="value" type="xs:decimal"/>
+      </xs:complexType>
+      <xs:simpleType name="resourceEnumDTO">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="RESOURCE"/>
+          <xs:enumeration value="WORKER"/>
+          <xs:enumeration value="MACHINE"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </grammars>
+  <resources base="http://localhost:8180/libreplan/ws/rest/">
+    <resource path="/orderelements/">
+      <method name="POST">
+        <request>
+          <representation mediaType="application/xml"/>
+        </request>
+        <response>
+          <representation mediaType="application/xml"/>
+        </response>
+      </method>
+      <method name="GET">
+        <response>
+          <representation mediaType="application/xml"/>
+        </response>
+      </method>
+      <resource path="/{code}/">
+        <param name="code" style="template" type="xs:string"/>
+        <method name="DELETE">
+          <request/>
+          <response>
+            <representation mediaType="application/xml"/>
+          </response>
+        </method>
+      </resource>
+      <resource path="/{code}/">
+        <param name="code" style="template" type="xs:string"/>
+        <method name="GET">
+          <request/>
+          <response>
+            <representation mediaType="application/xml"/>
+          </response>
+        </method>
+      </resource>
+    </resource>
+  </resources>
+</application>]]></con:content><con:type>http://research.sun.com/wadl/2006/10</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8180</con:endpoint></con:endpoints><con:resource name="" path="/orderelements/" id="222de58d-aafd-46df-8a42-9ecff14219d8"><con:settings/><con:parameters/><con:resource name="" path="ORDER0004" id="3576d021-c5b7-4eb2-bffc-9ed84fdb37bd"><con:settings/><con:parameters><con:parameter><con:name>code</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="" id="77cdbdb8-234b-4238-9a9e-1eb68502e854" method="DELETE"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="RequestDeleteOneProject" id="64a87722-3bf3-45b9-aac8-593f7bbc4623" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=1525C8F8E926E68B5EF7CA625845B192</con:originalUri><con:credentials><con:username>wswriter</con:username><con:password>wswriter</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters><entry key="code" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method><con:method name="" id="b6f1e392-7790-4727-9619-55fc64f94b48" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="RequestGetOneProject" id="36cc9ca1-1d37-4828-81b3-8ee538cc0521" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=852843AC723E39ADD719824EA43D7261</con:originalUri><con:credentials><con:username>wsreader</con:username><con:password>wsreader</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters><entry key="code" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method></con:resource><con:resource name="clone" path="ORDER0001" id="3576d021-c5b7-4eb2-bffc-9ed84fdb37bd"><con:settings/><con:parameters><con:parameter><con:name>code</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="" id="77cdbdb8-234b-4238-9a9e-1eb68502e854" method="DELETE"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="RequestDeleteOneProject2" id="64a87722-3bf3-45b9-aac8-593f7bbc4623" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=1525C8F8E926E68B5EF7CA625845B192</con:originalUri><con:credentials><con:username>wswriter</con:username><con:password>wswriter</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters><entry key="code" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method><con:method name="" id="b6f1e392-7790-4727-9619-55fc64f94b48" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="RequestGetOneProject2" id="36cc9ca1-1d37-4828-81b3-8ee538cc0521" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=852843AC723E39ADD719824EA43D7261</con:originalUri><con:credentials><con:username>wsreader</con:username><con:password>wsreader</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters><entry key="code" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method><con:method name="Getoneproject" id="b6f1e392-7790-4727-9619-55fc64f94b48" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="RequestGetOneProject3" id="36cc9ca1-1d37-4828-81b3-8ee538cc0521" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=852843AC723E39ADD719824EA43D7261</con:originalUri><con:credentials><con:username>wsreader</con:username><con:password>wsreader</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters><entry key="code" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method></con:resource><con:method name="" id="75bd700c-cfe9-4256-a835-280ceb8daf74" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="RequestPostCreate" id="cc821f25-803c-4d34-9c66-194d4db5279a" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request><![CDATA[<order-list xmlns="http://rest.ws.libreplan.org">
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-28" name="TotoajoutProjetWAOU" code="ORDER0004">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+  
+  
+</order-list>]]></con:request><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=DE9ECDAAA32CAA40118C4CED3D10EED4</con:originalUri><con:credentials><con:username>wswriter</con:username><con:password>wswriter</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/><con:parameterOrder/></con:request></con:method><con:method name="" id="e29f7510-e9f2-431d-84db-fe09bb03bd3c" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="RequestGetAllProjetcts" id="96441117-fdea-4dca-bd74-6a068f1d30b9" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=CBA3B7813BF3BC9CB66008ECA53493FF</con:originalUri><con:credentials><con:username>wsreader</con:username><con:password>wsreader</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite id="ee331ddc-0cdf-4e91-845c-2c9166ab9e9e" name="TestSuiteProjets"><con:description>The test suite generated for the REST service [Service 1]</con:description><con:settings><con:setting id="IncludeOverview">true</con:setting><con:setting id="IncludeResults">true</con:setting><con:setting id="FlowLayout">false</con:setting><con:setting id="ErrorDetails">true</con:setting><con:setting id="IncludeCoverage">true</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:runType>SEQUENTIAL</con:runType><con:testCase id="e9f708cc-1611-4bb0-ab99-97a5ea31fd80" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="GetAllProjectsTestCase" searchProperties="true" timeout="0"><con:description>The test case generated for the REST resource [] located at [/orderelements/]</con:description><con:settings/><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="restrequest" name="RequestAllProjects" id="cd67f326-67e3-4aa9-b557-38ab358fbf09"><con:settings/><con:config service="Service 1" resourcePath="/libreplan/ws/rest//orderelements/" methodName="" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="RequestAllProjects" id="96441117-fdea-4dca-bd74-6a068f1d30b9" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=0753C8768DC4EC57527EB8BA82FFADC6</con:originalUri><con:assertion type="Simple Contains" id="4ad60363-2e1c-4802-8965-32e982adf3a3" name="Contains" disabled="true"><con:configuration><token>ATAALLAH</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="cdd3c891-8fdb-4604-8ffb-f714552c9d80" name="Contains 2" disabled="true"><con:configuration><token>Projet2</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="44f82292-107a-4b05-a30d-1e333b3d417f" name="Contains 3" disabled="true"><con:configuration><token>ProjetTest</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="MessageContentAssertion" id="6147388e-b254-421b-9727-1e4f141fa3db" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[1]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ATAALLAH</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[1]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0001</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[2]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>Projet2</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[2]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0002</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[3]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ProjetTest</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[3]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0003</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:originalMessage><![CDATA[<order-list xmlns="http://rest.ws.libreplan.org">
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ATAALLAH" code="ORDER0001">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" deadline="2019-12-31" init-date="2018-08-29" name="Projet2" code="ORDER0002">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ProjetTest" code="ORDER0003">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+</order-list>]]></con:originalMessage></con:configuration></con:assertion><con:credentials><con:username>wsreader</con:username><con:password>wsreader</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/><con:parameterOrder/></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase id="85dc58a3-35f3-4e65-a1a9-3ab47eea127b" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="CreateProjectTestCase" searchProperties="true" timeout="0"><con:description>The test case generated for the REST resource [] located at [/orderelements/]</con:description><con:settings/><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="restrequest" name="RequestCreateProject" id="74db9724-3466-4115-b3b2-ca8f23df9954"><con:settings/><con:config service="Service 1" resourcePath="/libreplan/ws/rest//orderelements/" methodName="" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="RequestCreateProject" id="cc821f25-803c-4d34-9c66-194d4db5279a" mediaType="application/xml" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request><![CDATA[<order-list xmlns="http://rest.ws.libreplan.org">
+
+<order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-31" name="TotoajoutProjetWAOU" code="ORDER0004">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+
+</order-list>
+]]></con:request><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=9ED64FE8E0873FB8B82E2623278F6EB0</con:originalUri><con:assertion type="GroovyScriptAssertion" id="67db5f51-1d07-4921-a0e4-d38536e13fc0" name="Script Assertion" disabled="true"><con:configuration><scriptText>def rawResponse = context.expand( '${Request 1#RawResponse}' )
+</scriptText></con:configuration></con:assertion><con:assertion type="MessageContentAssertion" id="718ebf60-90dc-4c8f-899a-cfa9bceccbd1" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:instance-constraint-violations-list[1]</con:xpath><con:element>instance-constraint-violations-list</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue xsi:nil="true"/><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:originalMessage>&lt;instance-constraint-violations-list xmlns="http://rest.ws.libreplan.org"/></con:originalMessage></con:configuration></con:assertion><con:credentials><con:username>wswriter</con:username><con:password>wswriter</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>NTLM</con:addedBasicAuthenticationTypes><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/><con:parameterOrder/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="RequestAllProjects" id="c564cffc-a062-4ef9-bc65-45e6ad10a864"><con:settings/><con:config service="Service 1" resourcePath="/libreplan/ws/rest//orderelements/" methodName="" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="RequestAllProjects" id="96441117-fdea-4dca-bd74-6a068f1d30b9" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=0753C8768DC4EC57527EB8BA82FFADC6</con:originalUri><con:assertion type="Simple Contains" id="4ad60363-2e1c-4802-8965-32e982adf3a3" name="Contains" disabled="true"><con:configuration><token>ATAALLAH</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="cdd3c891-8fdb-4604-8ffb-f714552c9d80" name="Contains 2" disabled="true"><con:configuration><token>Projet2</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="44f82292-107a-4b05-a30d-1e333b3d417f" name="Contains 3" disabled="true"><con:configuration><token>ProjetTest</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="XPath Match" id="a52f00ba-69c5-4320-8d2a-4c609af4c371" name="XPath Match" disabled="true"><con:configuration><path>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]</path><content><![CDATA[<order-list xmlns="http://rest.ws.libreplan.org">
+  <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ATAALLAH" code="ORDER0001">
+    <labels/>
+    <material-assignments/>
+    <advance-measurements/>
+    <criterion-requirements/>
+    <children/>
+  </order>
+  <order calendar-name="Default" dependencies-constraints-have-priority="false" deadline="2019-12-31" init-date="2018-08-29" name="Projet2" code="ORDER0002">
+    <labels/>
+    <material-assignments/>
+    <advance-measurements/>
+    <criterion-requirements/>
+    <children/>
+  </order>
+  <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ProjetTest" code="ORDER0003">
+    <labels/>
+    <material-assignments/>
+    <advance-measurements/>
+    <criterion-requirements/>
+    <children/>
+  </order>
+  <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-31" name="TotoajoutProjetWAOU" code="ORDER0004">
+    <labels/>
+    <material-assignments/>
+    <advance-measurements/>
+    <criterion-requirements/>
+    <children/>
+  </order>
+</order-list>]]></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="MessageContentAssertion" id="a52e19c0-2603-471c-82a1-52c181ee1aad" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[1]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ATAALLAH</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[1]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0001</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[2]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0002</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[2]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>Projet2</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[3]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ProjetTest</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[3]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0003</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:originalMessage><![CDATA[<order-list xmlns="http://rest.ws.libreplan.org">
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ATAALLAH" code="ORDER0001">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" deadline="2019-12-31" init-date="2018-08-29" name="Projet2" code="ORDER0002">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ProjetTest" code="ORDER0003">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-31" name="TotoajoutProjetWAOU" code="ORDER0004">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+</order-list>]]></con:originalMessage></con:configuration></con:assertion><con:credentials><con:username>wsreader</con:username><con:password>wsreader</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/><con:parameterOrder/></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase id="aa7b4bd8-bb41-44f8-b3c8-1b2d4925e1a2" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="DeleteProjectTestCase" searchProperties="true" timeout="0"><con:description>The test case generated for the REST resource [] located at [/orderelements//{code}/]</con:description><con:settings/><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="restrequest" name="RequestAllProjectsStart" id="dbb988ec-96ee-42df-b4db-80314b513586"><con:settings/><con:config service="Service 1" resourcePath="/libreplan/ws/rest//orderelements/" methodName="" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="RequestAllProjectsStart" id="96441117-fdea-4dca-bd74-6a068f1d30b9" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=0753C8768DC4EC57527EB8BA82FFADC6</con:originalUri><con:assertion type="Simple Contains" id="4ad60363-2e1c-4802-8965-32e982adf3a3" name="Contains" disabled="true"><con:configuration><token>ATAALLAH</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="cdd3c891-8fdb-4604-8ffb-f714552c9d80" name="Contains 2" disabled="true"><con:configuration><token>Projet2</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="44f82292-107a-4b05-a30d-1e333b3d417f" name="Contains 3" disabled="true"><con:configuration><token>ProjetTest</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="XPath Match" id="a52f00ba-69c5-4320-8d2a-4c609af4c371" name="XPath Match" disabled="true"><con:configuration><path>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]</path><content><![CDATA[<order-list xmlns="http://rest.ws.libreplan.org">
+  <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ATAALLAH" code="ORDER0001">
+    <labels/>
+    <material-assignments/>
+    <advance-measurements/>
+    <criterion-requirements/>
+    <children/>
+  </order>
+  <order calendar-name="Default" dependencies-constraints-have-priority="false" deadline="2019-12-31" init-date="2018-08-29" name="Projet2" code="ORDER0002">
+    <labels/>
+    <material-assignments/>
+    <advance-measurements/>
+    <criterion-requirements/>
+    <children/>
+  </order>
+  <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ProjetTest" code="ORDER0003">
+    <labels/>
+    <material-assignments/>
+    <advance-measurements/>
+    <criterion-requirements/>
+    <children/>
+  </order>
+  <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-31" name="TotoajoutProjetWAOU" code="ORDER0004">
+    <labels/>
+    <material-assignments/>
+    <advance-measurements/>
+    <criterion-requirements/>
+    <children/>
+  </order>
+</order-list>]]></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="MessageContentAssertion" id="670c1e23-b798-4cc0-ac7f-a5f7b9cce867" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[1]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ATAALLAH</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[1]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0001</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[2]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>Projet2</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[2]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0002</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[3]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ProjetTest</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[3]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0003</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[4]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>TotoajoutProjetWAOU</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[4]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0004</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:originalMessage><![CDATA[<order-list xmlns="http://rest.ws.libreplan.org">
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ATAALLAH" code="ORDER0001">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" deadline="2019-12-31" init-date="2018-08-29" name="Projet2" code="ORDER0002">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ProjetTest" code="ORDER0003">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-31" name="TotoajoutProjetWAOU" code="ORDER0004">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+</order-list>]]></con:originalMessage></con:configuration></con:assertion><con:credentials><con:username>wsreader</con:username><con:password>wsreader</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/><con:parameterOrder/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="RequestDeleteOneProject" id="9ee36eeb-e319-4515-ab19-df439dee6bdd"><con:settings/><con:config service="Service 1" resourcePath="/libreplan/ws/rest//orderelements/ORDER0004" methodName="" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="RequestDeleteOneProject" id="64a87722-3bf3-45b9-aac8-593f7bbc4623" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=1525C8F8E926E68B5EF7CA625845B192</con:originalUri><con:assertion type="GroovyScriptAssertion" id="9ae420f2-5eea-411a-9999-249cffffdf8f" name="Script Assertion"><con:configuration/></con:assertion><con:credentials><con:username>wswriter</con:username><con:password>wswriter</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters><entry key="code" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="RequestAllProjectsEnd" id="e31da7f5-177b-4823-9c5b-14254803c0cc"><con:settings/><con:config service="Service 1" resourcePath="/libreplan/ws/rest//orderelements/" methodName="" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="RequestAllProjectsEnd" id="96441117-fdea-4dca-bd74-6a068f1d30b9" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=0753C8768DC4EC57527EB8BA82FFADC6</con:originalUri><con:assertion type="Simple Contains" id="4ad60363-2e1c-4802-8965-32e982adf3a3" name="Contains" disabled="true"><con:configuration><token>ATAALLAH</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="cdd3c891-8fdb-4604-8ffb-f714552c9d80" name="Contains 2" disabled="true"><con:configuration><token>Projet2</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="44f82292-107a-4b05-a30d-1e333b3d417f" name="Contains 3" disabled="true"><con:configuration><token>ProjetTest</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="MessageContentAssertion" id="30db845b-a976-4ff5-9600-1f67c4e63188" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[1]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ATAALLAH</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[1]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0001</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[2]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>Projet2</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[2]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0002</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[3]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ProjetTest</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[3]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0003</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:originalMessage><![CDATA[<order-list xmlns="http://rest.ws.libreplan.org">
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ATAALLAH" code="ORDER0001">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" deadline="2019-12-31" init-date="2018-08-29" name="Projet2" code="ORDER0002">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ProjetTest" code="ORDER0003">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+</order-list>]]></con:originalMessage></con:configuration></con:assertion><con:credentials><con:username>wsreader</con:username><con:password>wsreader</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/><con:parameterOrder/></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>dbb988ec-96ee-42df-b4db-80314b513586</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>9ee36eeb-e319-4515-ab19-df439dee6bdd</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:testCase id="431f9d73-8426-41a6-a41d-54039e148cc0" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="GetOneProjectTestCase" searchProperties="true" timeout="0"><con:description>The test case generated for the REST resource [] located at [/orderelements/]</con:description><con:settings/><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="restrequest" name="RequestAllProjects" id="a4bf8174-0a73-4130-916c-a15412a35d32"><con:settings/><con:config service="Service 1" resourcePath="/libreplan/ws/rest//orderelements/" methodName="" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="RequestAllProjects" id="96441117-fdea-4dca-bd74-6a068f1d30b9" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=0753C8768DC4EC57527EB8BA82FFADC6</con:originalUri><con:assertion type="Simple Contains" id="4ad60363-2e1c-4802-8965-32e982adf3a3" name="Contains" disabled="true"><con:configuration><token>ATAALLAH</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="cdd3c891-8fdb-4604-8ffb-f714552c9d80" name="Contains 2" disabled="true"><con:configuration><token>Projet2</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="44f82292-107a-4b05-a30d-1e333b3d417f" name="Contains 3" disabled="true"><con:configuration><token>ProjetTest</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="MessageContentAssertion" id="98850dd3-8e06-4956-a35c-8d59f0a7d997" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[1]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ATAALLAH</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[1]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0001</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[2]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>Projet2</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[2]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0002</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[3]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ProjetTest</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order-list[1]/ns1:order[3]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0003</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:originalMessage><![CDATA[<order-list xmlns="http://rest.ws.libreplan.org">
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ATAALLAH" code="ORDER0001">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" deadline="2019-12-31" init-date="2018-08-29" name="Projet2" code="ORDER0002">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+   <order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ProjetTest" code="ORDER0003">
+      <labels/>
+      <material-assignments/>
+      <advance-measurements/>
+      <criterion-requirements/>
+      <children/>
+   </order>
+</order-list>]]></con:originalMessage></con:configuration></con:assertion><con:credentials><con:username>wsreader</con:username><con:password>wsreader</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/><con:parameterOrder/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="RequestGetOneProject" id="38468da7-cbb1-4dc9-a3b9-c20ba12a6f5c"><con:settings/><con:config service="Service 1" resourcePath="/libreplan/ws/rest//orderelements/ORDER0001" methodName="Getoneproject" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="RequestGetOneProject" id="36cc9ca1-1d37-4828-81b3-8ee538cc0521" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8180</con:endpoint><con:request/><con:originalUri>http://localhost/libreplan/common/layout/login.zul;jsessionid=852843AC723E39ADD719824EA43D7261</con:originalUri><con:assertion type="MessageContentAssertion" id="f48059c2-3af8-4bf9-ac54-e310a04061d9" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order[1]/@name</con:xpath><con:element>@name</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ATAALLAH</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://rest.ws.libreplan.org';
+//ns1:order[1]/@code</con:xpath><con:element>@code</con:element><con:type/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>ORDER0001</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:originalMessage><![CDATA[<order calendar-name="Default" dependencies-constraints-have-priority="false" init-date="2018-08-27" name="ATAALLAH" code="ORDER0001" xmlns="http://rest.ws.libreplan.org">
+   <labels/>
+   <material-assignments/>
+   <advance-measurements/>
+   <criterion-requirements/>
+   <children/>
+</order>]]></con:originalMessage></con:configuration></con:assertion><con:credentials><con:username>wsreader</con:username><con:password>wsreader</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:preemptive>true</con:preemptive><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters><entry key="code" value="" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:savedRecentRuns>1</con:savedRecentRuns><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:jmsConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:xmlTemplates/><con:parameters/><con:parameters/></con:reporting><con:reporting/><con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest"><con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to SoapUI Pro tests
+
+// If hardcoding the token, uncomment and change line 5
+// def token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// def token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// def headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script></con:eventHandlers><con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep"><con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script></con:eventHandlers><con:authRepository/><con:tags/></con:soapui-project>
