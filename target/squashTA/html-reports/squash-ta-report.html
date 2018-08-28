@@ -23,7 +23,7 @@
                 <span>ArtifactId:&nbsp;</span>LibreplanTestProjet<br/> 
                 <span>Version:&nbsp;</span>1.0-SNAPSHOT<br/> 
                 <br/> 
-                <span>Execution date:&nbsp;</span>08/27/2018 17:40:24
+                <span>Execution date:&nbsp;</span>08/28/2018 16:49:56
                 <br/>
             </div>
 
@@ -45,18 +45,18 @@
                     <tbody>
     <tr>
         <td class="center status">
-            <div style="width:15px"><a href="#tests">        <img src="public/images/Circle_Red.png" />
+            <div style="width:15px"><a href="#tests">        <img src="public/images/Circle_Yellow.png" />
 </a></div>
         </td>
         <td><a href="#tests">tests</a></td>
         <td>1</td>
         <td>0</td>
-        <td>0</td>
         <td>1</td>
         <td>0</td>
         <td>0</td>
+        <td>0</td>
         <td>0%</td>
-        <td>3,308</td>
+        <td>5,611</td>
     </tr>
                     </tbody>
                     <tfoot>
@@ -64,12 +64,12 @@
                             <td colspan=2>Total:</td>
                             <td>1</td>
                             <td>0</td>
-                            <td>0</td>
                             <td>1</td>
+                            <td>0</td>
                             <td>0</td>
                             <td>0</td>                        
                             <td>0%</td>
-                            <td>3,308</td>
+                            <td>5,611</td>
                         </tr>
                     </tfoot>
             </table>
@@ -86,7 +86,7 @@
                 <div class="ecosystem">
     <div class="ecosystem-header">
         <h2>
-            <a id="tests"></a>        <img src="public/images/Circle_Red.png" />
+            <a id="tests"></a>        <img src="public/images/Circle_Yellow.png" />
 tests
         </h2>
     </div>
@@ -102,15 +102,15 @@ tests
                 </thead>
                 <tbody>
     <tr>
-        <td class="center status"><a href="#tests_testLibreplan.ta">         <img src="public/images/Circle_Red.png" />
+        <td class="center status"><a href="#tests_testLibreplan.ta">         <img src="public/images/Circle_Yellow.png" />
  </a></td>
         <td>
                 <a href="#tests_testLibreplan.ta">testLibreplan.ta</a>
         </td>
-        <td>        Error
+        <td>        Failure
 </td>
         <td>
-                3,289
+                5,599
         </td>
     </tr>
                 </tbody>
@@ -121,16 +121,16 @@ tests
         </div>    <div class="script">
         <div class="script-header">
             <h3>
-                        <img src="public/images/Circle_Red.png" />
+                        <img src="public/images/Circle_Yellow.png" />
 <a id="tests_testLibreplan.ta"></a> testLibreplan.ta
             </h3>
         </div>
         <div class="script-content">
     
             <div class="note">
-                <span>Status:&nbsp;</span>        Error
+                <span>Status:&nbsp;</span>        Failure
 <br/>
-                <span>Time (s):&nbsp;</span>3,289
+                <span>Time (s):&nbsp;</span>5,599
             </div>
     
             <table class="w100 striped">
@@ -147,7 +147,18 @@ tests
                         </tr>
     <tr class="a">
         <td class="center status">
-        <img src="public/images/Circle_Red.png" />
+        <img src="public/images/Circle_Green.png" />
+        </td>
+        <td>
+            <div class="col"># EXECUTE_SOAPUI libreplan-soapui-project.xml WITH TEST_SUITE TestSuiteResources AND TEST_CASE GetResourceTestCase</div>
+        </td>
+        <td class="txtcenter instruction-line">
+            5
+        </td>
+    </tr>
+    <tr class="a">
+        <td class="center status">
+        <img src="public/images/Circle_Yellow.png" />
         </td>
         <td>
                 <div class="row">
@@ -157,7 +168,7 @@ tests
     <div id="toggle0-collapse" class="desktop-hidden toggle-button">
         <a href="javascript:toggleDisplay('toggle0');"><img src="public/images/collapse.png"/></a>
     </div>
-                    <div class="col"># EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase</div>
+                    <div class="col"># EXECUTE_SOAPUI libreplan-soapui-project.xml WITH TEST_SUITE TestSuiteResources AND TEST_CASE GetResourcesTestCase</div>
                 </div>
                 <div id="toggle0" class="desktop-hidden inner-instruction">
                         <div class="row">
@@ -165,7 +176,7 @@ tests
         <img src="public/images/Circle_Green.png" />
                             </div>
                             <div class="col">          
-            <div class="col">LOAD libreplan-readyapi-project.xml AS __soapui_script0.file</div>
+            <div class="col">LOAD libreplan-soapui-project.xml AS __soapui_script3.file</div>
                             </div>
                         </div>
                         <div class="row">
@@ -173,79 +184,48 @@ tests
         <img src="public/images/Circle_Green.png" />
                             </div>
                             <div class="col">          
-            <div class="col">CONVERT __soapui_script0.file TO script.soapui(structured) AS __soapui_script1.soapui</div>
+            <div class="col">CONVERT __soapui_script3.file TO script.soapui(structured) AS __soapui_script4.soapui</div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col inside-status">
-        <img src="public/images/Circle_Red.png" />
-                            </div>
-                            <div class="col">          
-                <div class="row">
-    <div id="toggle3-expand" class="col-mid toggle-button">
-        <a href="javascript:toggleDisplay('toggle3');"><img src="public/images/expand.png"/></a>
-    </div>
-    <div id="toggle3-collapse" class="desktop-hidden toggle-button">
-        <a href="javascript:toggleDisplay('toggle3');"><img src="public/images/collapse.png"/></a>
-    </div>
-                    <div class="col">EXECUTE execute WITH __soapui_script1.soapui USING $(soapui.test.suites:TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase) AS __exec2.result</div>
-                </div>
-                <div id="toggle3" class="desktop-hidden inner-instruction">
                         <div class="row">
                             <div class="col inside-status">
         <img src="public/images/Circle_Green.png" />
                             </div>
                             <div class="col">          
-            <div class="col">$(soapui.test.suites:TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase) --&gt; {{__tempI0}}</div>
+            <div class="col">EXECUTE execute WITH __soapui_script4.soapui USING $(soapui.test.suites:TestSuiteResources;soapui.test.cases:GetResourcesTestCase) AS __exec5.result</div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col inside-status">
-        <img src="public/images/Circle_Red.png" />
+        <img src="public/images/Circle_Yellow.png" />
                             </div>
                             <div class="col">          
-                <div class="col">EXECUTE execute WITH __soapui_script1.soapui USING {{__tempI0}} AS __exec2.result</div>
+                <div class="col">ASSERT __exec5.result IS success</div>
                 <div class="stack">
     <div class="row">
-    <div id="toggle5-expand" class="col-mid toggle-button">
-        <a href="javascript:toggleDisplay('toggle5');"><img src="public/images/expand.png"/></a>
+    <div id="toggle4-expand" class="col-mid toggle-button">
+        <a href="javascript:toggleDisplay('toggle4');"><img src="public/images/expand.png"/></a>
     </div>
-    <div id="toggle5-collapse" class="desktop-hidden toggle-button">
-        <a href="javascript:toggleDisplay('toggle5');"><img src="public/images/collapse.png"/></a>
+    <div id="toggle4-collapse" class="desktop-hidden toggle-button">
+        <a href="javascript:toggleDisplay('toggle4');"><img src="public/images/collapse.png"/></a>
     </div>
         
-        <div class="col-mid">Bad data given to the instruction: 
-org.squashtest.ta.framework.exception.BadDataException: Test suite 'TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase' not found. Valid test suite names are:
-- TestSuiteResources
-- TestSuiteCalendrier
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.testExistingTestSuite(SoapUiProcessExecutor.java:151)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.retrieveWantedTestSuites(SoapUiProcessExecutor.java:134)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.run(SoapUiProcessExecutor.java:98)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.main(SoapUiProcessExecutor.java:259)
+        <div class="col-mid">SoapUI test failed. Following are the test cases that failed:
+Test case 'GetResourcesTestCase' from test suite 'TestSuiteResources' has status : FAILED
 </div>
     </div>
     <div class="row">
-        <div id="toggle5" class="desktop-hidden small col trace">
+        <div id="toggle4" class="desktop-hidden small col trace">
             <pre>
-org.squashtest.ta.framework.exception.BadDataException: Bad data given to the instruction: 
-org.squashtest.ta.framework.exception.BadDataException: Test suite &apos;TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase&apos; not found. Valid test suite names are:
-- TestSuiteResources
-- TestSuiteCalendrier
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.testExistingTestSuite(SoapUiProcessExecutor.java:151)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.retrieveWantedTestSuites(SoapUiProcessExecutor.java:134)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.run(SoapUiProcessExecutor.java:98)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.main(SoapUiProcessExecutor.java:259)
+org.squashtest.ta.framework.exception.AssertionFailedException: SoapUI test failed. Following are the test cases that failed:
+Test case &apos;GetResourcesTestCase&apos; from test suite &apos;TestSuiteResources&apos; has status : FAILED
 
-	at org.squashtest.ta.plugin.soapui.library.SquashSoapUIRunner.run(SquashSoapUIRunner.java:112)
-	at org.squashtest.ta.plugin.soapui.commands.ExecuteSoapUIScriptCommand.apply(ExecuteSoapUIScriptCommand.java:100)
-	at org.squashtest.ta.plugin.soapui.commands.ExecuteSoapUIScriptCommand.apply(ExecuteSoapUIScriptCommand.java:1)
-	at org.squashtest.ta.backbone.engine.wrapper.CommandHandler.apply(CommandHandler.java:132)
-	at org.squashtest.ta.backbone.engine.instructionrunner.DefaultExecuteCommandRunner.doRun(DefaultExecuteCommandRunner.java:79)
+	at org.squashtest.ta.plugin.soapui.assertions.SoapUIIsSuccess.test(SoapUIIsSuccess.java:89)
+	at org.squashtest.ta.backbone.engine.wrapper.UnaryAssertionHandler.test(UnaryAssertionHandler.java:94)
+	at org.squashtest.ta.backbone.engine.instructionrunner.DefaultUnaryAssertionRunner.doRun(DefaultUnaryAssertionRunner.java:86)
 	at org.squashtest.ta.backbone.engine.instructionrunner.AbstractDefaultInstructionRunner.run(AbstractDefaultInstructionRunner.java:69)
 	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runInstruction(TestRunnerImpl.java:203)
 	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runInstructionList(TestRunnerImpl.java:148)
-	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runMetaInstruction(TestRunnerImpl.java:172)
-	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runInstructionList(TestRunnerImpl.java:146)
 	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runMetaInstruction(TestRunnerImpl.java:172)
 	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runInstructionList(TestRunnerImpl.java:146)
 	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runPhase(TestRunnerImpl.java:136)
@@ -287,39 +267,6 @@ org.squashtest.ta.framework.exception.BadDataException: Test suite &apos;TestSui
                             </div>
                         </div>
                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col inside-status">
-        <img src="public/images/Circle_Grey.png" />
-                            </div>
-                            <div class="col">          
-            <div class="col">ASSERT __exec2.result IS success</div>
-                            </div>
-                        </div>
-                 </div>
-        </td>
-        <td class="txtcenter instruction-line">
-            3
-        </td>
-    </tr>
-    <tr class="a">
-        <td class="center status">
-        <img src="public/images/Circle_Grey.png" />
-        </td>
-        <td>
-            <div class="col"># EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteResources AND WITH TEST_CASE GetResourceTestCase</div>
-        </td>
-        <td class="txtcenter instruction-line">
-            5
-        </td>
-    </tr>
-    <tr class="a">
-        <td class="center status">
-        <img src="public/images/Circle_Grey.png" />
-        </td>
-        <td>
-            <div class="col"># EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteResources AND WITH TEST_CASE GetResourcesTestCase</div>
         </td>
         <td class="txtcenter instruction-line">
             7
@@ -330,7 +277,7 @@ org.squashtest.ta.framework.exception.BadDataException: Test suite &apos;TestSui
         <img src="public/images/Circle_Grey.png" />
         </td>
         <td>
-            <div class="col"># EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteCalendrier AND WITH TEST_CASE GetCalendarTestCase</div>
+            <div class="col"># EXECUTE_SOAPUI libreplan-soapui-project.xml WITH TEST_SUITE TestSuiteCalendrier AND TEST_CASE GetCalendarTestCase</div>
         </td>
         <td class="txtcenter instruction-line">
             9
@@ -341,7 +288,7 @@ org.squashtest.ta.framework.exception.BadDataException: Test suite &apos;TestSui
         <img src="public/images/Circle_Grey.png" />
         </td>
         <td>
-            <div class="col"># EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteCalendrier AND WITH TEST_CASE GetAllCalendarsTestCase</div>
+            <div class="col"># EXECUTE_SOAPUI libreplan-soapui-project.xml WITH TEST_SUITE TestSuiteCalendrier AND TEST_CASE GetAllCalendarsTestCase</div>
         </td>
         <td class="txtcenter instruction-line">
             11
@@ -351,6 +298,16 @@ org.squashtest.ta.framework.exception.BadDataException: Test suite &apos;TestSui
                 </tbody>
             </table>
             <br/>
+                <table class="w100 striped">
+                <thead>
+                    <tr class="table-header">
+                        <th class="big">Attachments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr><td><a href="attachments/tests/testLibreplan.ta/EXECUTION_REPORT-SOAP_UIReport">EXECUTION_REPORT-SOAP_UIReport</a></td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="script-link">
@@ -362,7 +319,7 @@ org.squashtest.ta.framework.exception.BadDataException: Test suite &apos;TestSui
         
     </div>
     <div class="footer txtcenter">
-        <p>Generated by Squash TA&copy; on 08/27/2018 17:40</p>
+        <p>Generated by Squash TA&copy; on 08/28/2018 16:49</p>
     </div>
 </body>
 </html>

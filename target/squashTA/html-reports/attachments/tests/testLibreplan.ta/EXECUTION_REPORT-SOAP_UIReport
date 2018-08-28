@@ -1,0 +1,11 @@
+TestCase 'GetResourcesTestCase' of TestSuite 'TestSuiteResources' : FAILED
+
+--> Step 'getRessources' : FAILED :
+- [Contains] Missing token [nif="1" surname="Bourne" first-name="Jason" code="WORKER0001"] in Response
+- [Contains 2] Missing token [nif="2" surname="Bond" first-name="James" code="WORKER0002"] in Response
+- [XPath Match] org/w3c/tidy/Tidy
+
+
+--------------------------------------------
+
+

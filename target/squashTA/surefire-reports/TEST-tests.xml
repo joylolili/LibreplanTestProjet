@@ -1,42 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite time="3.308" failures="0" tests="1" name="tests" >
-  <testcase time="3.289" classname="tests" name="testLibreplan.ta" >
-    <error message="Bad data given to the instruction: 
-org.squashtest.ta.framework.exception.BadDataException: Test suite &apos;TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase&apos; not found. Valid test suite names are:
-- TestSuiteResources
-- TestSuiteCalendrier
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.testExistingTestSuite(SoapUiProcessExecutor.java:151)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.retrieveWantedTestSuites(SoapUiProcessExecutor.java:134)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.run(SoapUiProcessExecutor.java:98)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.main(SoapUiProcessExecutor.java:259)
-" type="org.squashtest.ta.framework.exception.BadDataException" >
+<testsuite time="5.611" failures="1" tests="1" name="tests" >
+  <testcase time="5.599" classname="tests" name="testLibreplan.ta" >
+    <failure message="SoapUI test failed. Following are the test cases that failed:
+Test case &apos;GetResourcesTestCase&apos; from test suite &apos;TestSuiteResources&apos; has status : FAILED
+" type="org.squashtest.ta.framework.exception.AssertionFailedException" >
 Summary
 TEST :
-[ERROR] # EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase
-	[SUCCESS] 	LOAD libreplan-readyapi-project.xml AS __soapui_script0.file
+[SUCCESS] # EXECUTE_SOAPUI libreplan-soapui-project.xml WITH TEST_SUITE TestSuiteResources AND TEST_CASE GetResourceTestCase
+	[SUCCESS] 	LOAD libreplan-soapui-project.xml AS __soapui_script0.file
 	[SUCCESS] 	CONVERT __soapui_script0.file TO script.soapui(structured) AS __soapui_script1.soapui
-	[ERROR] 	EXECUTE execute WITH __soapui_script1.soapui USING $(soapui.test.suites:TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase) AS __exec2.result
-		[SUCCESS] 		$(soapui.test.suites:TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase) --> {{__tempI0}}
-		[ERROR] 		EXECUTE execute WITH __soapui_script1.soapui USING {{__tempI0}} AS __exec2.result
-org.squashtest.ta.framework.exception.BadDataException: Bad data given to the instruction: 
-org.squashtest.ta.framework.exception.BadDataException: Test suite &apos;TestSuiteResources AND WITH TEST_CASE CreateResourceTestCase&apos; not found. Valid test suite names are:
-- TestSuiteResources
-- TestSuiteCalendrier
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.testExistingTestSuite(SoapUiProcessExecutor.java:151)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.retrieveWantedTestSuites(SoapUiProcessExecutor.java:134)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.run(SoapUiProcessExecutor.java:98)
-	at org.squashtest.ta.plugin.soapui.library.SoapUiProcessExecutor.main(SoapUiProcessExecutor.java:259)
+	[SUCCESS] 	EXECUTE execute WITH __soapui_script1.soapui USING $(soapui.test.suites:TestSuiteResources;soapui.test.cases:GetResourceTestCase) AS __exec2.result
+		[SUCCESS] 		$(soapui.test.suites:TestSuiteResources;soapui.test.cases:GetResourceTestCase) --> {{__tempI0}}
+		[SUCCESS] 		EXECUTE execute WITH __soapui_script1.soapui USING {{__tempI0}} AS __exec2.result
+	[SUCCESS] 	ASSERT __exec2.result IS success
+[FAIL] # EXECUTE_SOAPUI libreplan-soapui-project.xml WITH TEST_SUITE TestSuiteResources AND TEST_CASE GetResourcesTestCase
+	[SUCCESS] 	LOAD libreplan-soapui-project.xml AS __soapui_script3.file
+	[SUCCESS] 	CONVERT __soapui_script3.file TO script.soapui(structured) AS __soapui_script4.soapui
+	[SUCCESS] 	EXECUTE execute WITH __soapui_script4.soapui USING $(soapui.test.suites:TestSuiteResources;soapui.test.cases:GetResourcesTestCase) AS __exec5.result
+		[SUCCESS] 		$(soapui.test.suites:TestSuiteResources;soapui.test.cases:GetResourcesTestCase) --> {{__tempI1}}
+		[SUCCESS] 		EXECUTE execute WITH __soapui_script4.soapui USING {{__tempI1}} AS __exec5.result
+	[FAIL] 	ASSERT __exec5.result IS success
+org.squashtest.ta.framework.exception.AssertionFailedException: SoapUI test failed. Following are the test cases that failed:
+Test case &apos;GetResourcesTestCase&apos; from test suite &apos;TestSuiteResources&apos; has status : FAILED
 
-	at org.squashtest.ta.plugin.soapui.library.SquashSoapUIRunner.run(SquashSoapUIRunner.java:112)
-	at org.squashtest.ta.plugin.soapui.commands.ExecuteSoapUIScriptCommand.apply(ExecuteSoapUIScriptCommand.java:100)
-	at org.squashtest.ta.plugin.soapui.commands.ExecuteSoapUIScriptCommand.apply(ExecuteSoapUIScriptCommand.java:1)
-	at org.squashtest.ta.backbone.engine.wrapper.CommandHandler.apply(CommandHandler.java:132)
-	at org.squashtest.ta.backbone.engine.instructionrunner.DefaultExecuteCommandRunner.doRun(DefaultExecuteCommandRunner.java:79)
+	at org.squashtest.ta.plugin.soapui.assertions.SoapUIIsSuccess.test(SoapUIIsSuccess.java:89)
+	at org.squashtest.ta.backbone.engine.wrapper.UnaryAssertionHandler.test(UnaryAssertionHandler.java:94)
+	at org.squashtest.ta.backbone.engine.instructionrunner.DefaultUnaryAssertionRunner.doRun(DefaultUnaryAssertionRunner.java:86)
 	at org.squashtest.ta.backbone.engine.instructionrunner.AbstractDefaultInstructionRunner.run(AbstractDefaultInstructionRunner.java:69)
 	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runInstruction(TestRunnerImpl.java:203)
 	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runInstructionList(TestRunnerImpl.java:148)
-	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runMetaInstruction(TestRunnerImpl.java:172)
-	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runInstructionList(TestRunnerImpl.java:146)
 	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runMetaInstruction(TestRunnerImpl.java:172)
 	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runInstructionList(TestRunnerImpl.java:146)
 	at org.squashtest.ta.backbone.engine.impl.TestRunnerImpl.runPhase(TestRunnerImpl.java:136)
@@ -71,35 +63,20 @@ org.squashtest.ta.framework.exception.BadDataException: Test suite &apos;TestSui
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
 
-	[NOT_RUN] 	ASSERT __exec2.result IS success
-[NOT_RUN] # EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteResources AND WITH TEST_CASE GetResourceTestCase
-	[NOT_RUN] 	LOAD libreplan-readyapi-project.xml AS __soapui_script3.file
-	[NOT_RUN] 	CONVERT __soapui_script3.file TO script.soapui(structured) AS __soapui_script4.soapui
-	[NOT_RUN] 	EXECUTE execute WITH __soapui_script4.soapui USING $(soapui.test.suites:TestSuiteResources AND WITH TEST_CASE GetResourceTestCase) AS __exec5.result
-		[NOT_RUN] 		$(soapui.test.suites:TestSuiteResources AND WITH TEST_CASE GetResourceTestCase) --> {{__tempI1}}
-		[NOT_RUN] 		EXECUTE execute WITH __soapui_script4.soapui USING {{__tempI1}} AS __exec5.result
-	[NOT_RUN] 	ASSERT __exec5.result IS success
-[NOT_RUN] # EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteResources AND WITH TEST_CASE GetResourcesTestCase
-	[NOT_RUN] 	LOAD libreplan-readyapi-project.xml AS __soapui_script6.file
+[NOT_RUN] # EXECUTE_SOAPUI libreplan-soapui-project.xml WITH TEST_SUITE TestSuiteCalendrier AND TEST_CASE GetCalendarTestCase
+	[NOT_RUN] 	LOAD libreplan-soapui-project.xml AS __soapui_script6.file
 	[NOT_RUN] 	CONVERT __soapui_script6.file TO script.soapui(structured) AS __soapui_script7.soapui
-	[NOT_RUN] 	EXECUTE execute WITH __soapui_script7.soapui USING $(soapui.test.suites:TestSuiteResources AND WITH TEST_CASE GetResourcesTestCase) AS __exec8.result
-		[NOT_RUN] 		$(soapui.test.suites:TestSuiteResources AND WITH TEST_CASE GetResourcesTestCase) --> {{__tempI2}}
+	[NOT_RUN] 	EXECUTE execute WITH __soapui_script7.soapui USING $(soapui.test.suites:TestSuiteCalendrier;soapui.test.cases:GetCalendarTestCase) AS __exec8.result
+		[NOT_RUN] 		$(soapui.test.suites:TestSuiteCalendrier;soapui.test.cases:GetCalendarTestCase) --> {{__tempI2}}
 		[NOT_RUN] 		EXECUTE execute WITH __soapui_script7.soapui USING {{__tempI2}} AS __exec8.result
 	[NOT_RUN] 	ASSERT __exec8.result IS success
-[NOT_RUN] # EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteCalendrier AND WITH TEST_CASE GetCalendarTestCase
-	[NOT_RUN] 	LOAD libreplan-readyapi-project.xml AS __soapui_script9.file
+[NOT_RUN] # EXECUTE_SOAPUI libreplan-soapui-project.xml WITH TEST_SUITE TestSuiteCalendrier AND TEST_CASE GetAllCalendarsTestCase
+	[NOT_RUN] 	LOAD libreplan-soapui-project.xml AS __soapui_script9.file
 	[NOT_RUN] 	CONVERT __soapui_script9.file TO script.soapui(structured) AS __soapui_scripta.soapui
-	[NOT_RUN] 	EXECUTE execute WITH __soapui_scripta.soapui USING $(soapui.test.suites:TestSuiteCalendrier AND WITH TEST_CASE GetCalendarTestCase) AS __execb.result
-		[NOT_RUN] 		$(soapui.test.suites:TestSuiteCalendrier AND WITH TEST_CASE GetCalendarTestCase) --> {{__tempI3}}
+	[NOT_RUN] 	EXECUTE execute WITH __soapui_scripta.soapui USING $(soapui.test.suites:TestSuiteCalendrier;soapui.test.cases:GetAllCalendarsTestCase) AS __execb.result
+		[NOT_RUN] 		$(soapui.test.suites:TestSuiteCalendrier;soapui.test.cases:GetAllCalendarsTestCase) --> {{__tempI3}}
 		[NOT_RUN] 		EXECUTE execute WITH __soapui_scripta.soapui USING {{__tempI3}} AS __execb.result
 	[NOT_RUN] 	ASSERT __execb.result IS success
-[NOT_RUN] # EXECUTE_SOAPUI libreplan-readyapi-project.xml WITH TEST_SUITE TestSuiteCalendrier AND WITH TEST_CASE GetAllCalendarsTestCase
-	[NOT_RUN] 	LOAD libreplan-readyapi-project.xml AS __soapui_scriptc.file
-	[NOT_RUN] 	CONVERT __soapui_scriptc.file TO script.soapui(structured) AS __soapui_scriptd.soapui
-	[NOT_RUN] 	EXECUTE execute WITH __soapui_scriptd.soapui USING $(soapui.test.suites:TestSuiteCalendrier AND WITH TEST_CASE GetAllCalendarsTestCase) AS __exece.result
-		[NOT_RUN] 		$(soapui.test.suites:TestSuiteCalendrier AND WITH TEST_CASE GetAllCalendarsTestCase) --> {{__tempI4}}
-		[NOT_RUN] 		EXECUTE execute WITH __soapui_scriptd.soapui USING {{__tempI4}} AS __exece.result
-	[NOT_RUN] 	ASSERT __exece.result IS success
-    </error>
+    </failure>
   </testcase>
 </testsuite>

@@ -1,4 +1,4 @@
-2018-08-27 17:40:26,073 WARN  [SoapUI] Missing folder [C:\Users\formation\Desktop\PROJET 2\LibreplanTestProjet\.\ext] for external libraries
-2018-08-27 17:40:26,299 INFO  [DefaultSoapUICore] initialized soapui-settings from [C:\Users\formation\soapui-settings.xml]
-2018-08-27 17:40:26,700 INFO  [SoapUI] File [C:\Users\formation\Desktop\PROJET 2\LibreplanTestProjet\file:\C:\Users\FORMAT~1\AppData\Local\Temp\Squash_TA\20180827_174022_012\tests\tests\testLibreplan.ta\ta_url_repo_librepla278807634187289960.xml] does not exist, trying URL instead
-2018-08-27 17:40:26,741 INFO  [WsdlProject] Loaded project from [file:/C:/Users/FORMAT~1/AppData/Local/Temp/Squash_TA/20180827_174022_012/tests/tests/testLibreplan.ta/ta_url_repo_librepla278807634187289960.xml]
+2018-08-28 16:50:00,180 WARN  [SoapUI] Missing folder [C:\Users\formation\Desktop\PROJET 2\LibreplanTestProjet\.\ext] for external libraries
+2018-08-28 16:50:00,404 INFO  [DefaultSoapUICore] initialized soapui-settings from [C:\Users\formation\soapui-settings.xml]
+2018-08-28 16:50:00,780 INFO  [SoapUI] File [C:\Users\formation\Desktop\PROJET 2\LibreplanTestProjet\file:\C:\Users\FORMAT~1\AppData\Local\Temp\Squash_TA\20180828_164953_375\tests\tests\testLibreplan.ta\ta_url_repo_librepla5412666879643350791.xml] does not exist, trying URL instead
+2018-08-28 16:50:00,807 INFO  [WsdlProject] Loaded project from [file:/C:/Users/FORMAT~1/AppData/Local/Temp/Squash_TA/20180828_164953_375/tests/tests/testLibreplan.ta/ta_url_repo_librepla5412666879643350791.xml]
